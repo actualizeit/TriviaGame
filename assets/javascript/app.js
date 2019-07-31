@@ -6,7 +6,8 @@ var questions = [{
       "Cloudy",
       "Windy"
     ],
-    "ca": "sunny"
+    "ca": 4,
+    "ct": "The weather is, in fact, Sunny"
   },
   {
     "q": "What time of day is it?",
@@ -16,7 +17,8 @@ var questions = [{
       "6",
       "10"
     ],
-    "ca": "6"
+    "ca": 2,
+    "ct": "The weather is, in fact, Sunny"
   },
   {
     "q": "Whats your favourite music?",
@@ -26,7 +28,8 @@ var questions = [{
       "stuff",
       "classical"
     ],
-    "ca": "stuff"
+    "ca": 3,
+    "ct": "The weather is, in fact, Sunny"
   },
   {
     "q": "Which season is your favourite?",
@@ -36,7 +39,8 @@ var questions = [{
       "fall",
       "winter"
     ],
-    "ca": "winter"
+    "ca": 3,
+    "ct": "The weather is, in fact, Sunny"
   },
   {
     "q": "What colour are your eyes?",
@@ -46,19 +50,53 @@ var questions = [{
       "Cloudy",
       "Windy"
     ],
-    "ca": "Windy"
+    "ca": 1,
+    "ct": "The weather is, in fact, Sunny"
   }
 ];
 
 console.log(questions);
 var questionTracker = [];
 var questionAmount = 1;
-var time = 30;
+var answerValue;
+var time = 5;
 var intervalId;
+var currentObject;
 
-$("#start").click(console.log("wutt"));
+window.onload = function() {
+    $("button").on("click", buttonClicked)
+    $("#timeRemaining").css("display","none");
+    $("#question").css("display","none");
+    $("#ans1").css("display","none");
+    $("#ans2").css("display","none");
+    $("#ans3").css("display","none");
+    $("#ans4").css("display","none");
+    };
+
+// $("#start").click(console.log("wutt"));
+
 function reset() {
-    time = 30;
+    time = 5;
+}
+
+
+function buttonClicked() {
+    console.log("wut")
+    time = 5;
+    $("#start").css("display","none");
+    $("#timeRemaining").css("display","inline-block");
+    $("#question").css("display","inline-block");
+    $("#ans1").css("display","inline-block").on("click", checkAns(1));
+    $("#ans2").css("display","inline-block").on("click", checkAns(2));
+    $("#ans3").css("display","inline-block").on("click", checkAns(3));
+    $("#ans4").css("display","inline-block").on("click", checkAns(4));
+    countdown();
+}
+
+function questionAnswered(){
+    resetPage()
+    $("#info").html("<h3>" + currentObject.ct + "</h3>");
+    setTimeout(buttonClicked(), 3 * 1000);
 }
 
 function countdown() {
@@ -67,49 +105,23 @@ function countdown() {
   }
 
   //  The decrement function.
-  function decrement() {
+function decrement() {
 
     //  Decrease number by one.
     time--;
 
-    //  Show the number in the #show-number tag.
+    //  Show the number in the #timeRemaining tag.
     $("#timeRemaining").html("<h4>" + time + " Seconds Remaining</h4>");
 
-
-    //  Once number hits zero...
     if (time === 0) {
 
-      //  ...run the stop function.
-      stop();
-
-      //  Next Question and Reset Timer
-      nextQuestion();
-      reset();
-    }
+        //  Next Question and Reset Timer
+            buttonClicked();
+            reset();
+        }
   }
 
-window.onload = function() {
-$("button").on("click", nextQuestion);
-$("#timeRemaining").css("display","none");
-$("#question").css("display","none");
-$("#ans1").css("display","none");
-$("#ans2").css("display","none");
-$("#ans3").css("display","none");
-$("#ans4").css("display","none");
-
-
-function nextQuestion() {
-    console.log("wut")
-    $("#start").css("display","none");
-    $("#timeRemaining").css("display","inline-block");
-    $("#question").css("display","inline-block");
-    $("#ans1").css("display","inline-block");
-    $("#ans2").css("display","inline-block");
-    $("#ans3").css("display","inline-block");
-    $("#ans4").css("display","inline-block");
-    countdown();
-
-
+function figuredOut(a) {
 // Iterate however many times
 for (var i = 0; i < questionAmount; i++) {
   // Keep creating random numbers until the number is unique
@@ -119,6 +131,7 @@ for (var i = 0; i < questionAmount; i++) {
   while (existingQuestions()){
   $("#question").html("<h3>" + questions[randomQuestion].q + "</h3>");
   var qAns = questions[randomQuestion].a;
+  currentObject = questions[randomQuestion];
 
   for (var j = 0; j < qAns.length; j++) {
     var answer = qAns[j];
@@ -150,19 +163,17 @@ function existingQuestions() {
     }
     return false;
   }
-};
-};
-var wePlayin;
-var count = 0;
+  function checkAns(a){
+    if (currentObject.ca === a) {
+      return true;
+    }
+    else{
+        return false;
+    }
+  }
+
+}
 
 
 
 
-
-
-    // for(i=0; i < questions.length; i++){
-    //     var iAnswers = [];
-    //     $("#question").text(questions[i])
-    //     for(i=0; i < 4; i++){
-    //     iAnswers.append(answers[i*])
-    // }
