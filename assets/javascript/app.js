@@ -19,7 +19,9 @@ var questions = [{
       "10"
     ],
     "ca": 1,
-    "ct": "actually its 1"
+    "ct": "actually its 1",
+    "gif": "'https://media.giphy.com/media/f8sUe17QkXY9o8uoFk/giphy.gif'"
+
   },
   {
     "q": "Whats your favourite music?",
@@ -30,7 +32,9 @@ var questions = [{
       "classical"
     ],
     "ca": 1,
-    "ct": "dubstep is bes"
+    "ct": "dubstep is bes",
+    "gif": "'https://media.giphy.com/media/f8sUe17QkXY9o8uoFk/giphy.gif'"
+
   },
   {
     "q": "Which season is your favourite?",
@@ -41,7 +45,9 @@ var questions = [{
       "winter"
     ],
     "ca": 1,
-    "ct": "the other season"
+    "ct": "the other season",
+    "gif": "'https://media.giphy.com/media/f8sUe17QkXY9o8uoFk/giphy.gif'"
+
   },
   {
     "q": "What colour are your eyes?",
@@ -52,19 +58,21 @@ var questions = [{
       "Windy"
     ],
     "ca": 1,
-    "ct": "weather is the worst"
+    "ct": "weather is the worst",
+    "gif": "'https://media.giphy.com/media/f8sUe17QkXY9o8uoFk/giphy.gif'"
+
   }
 ];
 
 console.log(questions.length);
-var answerValue;
+// var answerValue;
 var time = 35;
 var timeout;
 var intervalId;
 var currentObject = questions[0];
 var questionNumber = -1;
-var answeredValue = 0;
-var gameStarted = false;
+// var answeredValue = 0;
+// var gameStarted = false;
 var rightAnswers = 0;
 var wrongAnswers = 0;
 
@@ -74,31 +82,34 @@ window.onload = function() {
     $("#timeRemaining").css("display","none");
     $("#question").css("display","none");
     $("#ansButtons").css("display","none");
+    $("#ans1").on("click", ansClicked);
+    $("#ans2").on("click", ansClicked);
+    $("#ans3").on("click", ansClicked);
+    $("#ans4").on("click", ansClicked);
     };
 
 function resetPage(){
     $("#timeRemaining").css("display","none");
     $("#question").css("display","none");
     $("#ansButtons").css("display","none");
-
 }
 
 function checkAns(a){
-    console.log("thatwork?")
-    console.log("asval" + a)
-    checkAnsTimeout = setTimeout(function(){
-        nextQuestion()}, 5000)
+    console.log("question#: " + questionNumber)
+    timeout = setTimeout(function(){
+        nextQuestion()}, 1000)
     if (currentObject.ca == a) {
         rightAnswers++;
+        console.log("right: " + rightAnswers + "wrong: " + wrongAnswers)
         $("#rightWrong").html("<h3>That's absolutely right! You so smaaat!</h3>");
         questionAnswered()
     }else{
-        console.log("elsework?")
+        console.log("wrong: " + wrongAnswers + "right: " + rightAnswers)
         wrongAnswers++;
         $("#rightWrong").html("<h3>No! Bad! Wrong!</h3>");
         questionAnswered()
     }
-  }
+}
 
 function ansClicked(){
     console.log(this);
@@ -123,14 +134,11 @@ function showQuestion(){
     $("#timeRemaining").css("display","inline-block");
     $("#question").css("display","inline-block");
     $("#ansButtons").css("display","inline-block")
-    $("#ans1").on("click", ansClicked);
-    $("#ans2").on("click", ansClicked);
-    $("#ans3").on("click", ansClicked);
-    $("#ans4").on("click", ansClicked);
 }
 
 
 function nextQuestion() {
+    clearTimeout(timeout);
     time=30;
     showQuestion();
     countdown();
@@ -139,7 +147,7 @@ function nextQuestion() {
 
 function questionAnswered(){
     resetPage()
-    $("#rightWrong").css("display","inline-block");
+    // $("#rightWrong").css("display","inline-block");
     $("#answerArea").css("display","inline-block");
     $("#gif").html("<img src=" + currentObject.gif + ">");
     $("#info").html("<h3>" + currentObject.ct + "</h3>");
@@ -160,13 +168,19 @@ function decrement() {
     $("#timeRemaining").html("<h4>" + time + " Seconds Remaining</h4>");
 
     if (time === 0) {
-            checkAns(5);
+            checkAns(0);
         }
   }
 
 function updateQuestion(){
     if(questionNumber === questions.length - 1){
         resetPage()
+        clearInterval(intervalId);
+        $("#timeRemaining").css("display","inline-block").html("<h3>It's over. It's all over.</h3>");
+        $("#question").css("display","inline-block").html("<h4>Correct Answers: " + rightAnswers + "</h4>");
+        $("#wrongAns").css("display","inline-block").html("<h4>Incorrect Answers: " + wrongAnswers + "</h4>");
+        $("#start").css("display","inline-block").text("Play again?").on("click", restartGame);
+        return;
     }
     questionNumber++;
     currentObject = questions[questionNumber];
@@ -191,6 +205,14 @@ function updateQuestion(){
   }
 }
 
+function restartGame(){
+    $("#wrongAns").css("display","none");
+    questionNumber = -1;
+    currentObject = questions[0];
+    rightAnswers = 0;
+    wrongAnswers = 0;
+    nextQuestion();
+}
 
 
 
