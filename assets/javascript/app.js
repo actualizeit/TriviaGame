@@ -55,70 +55,74 @@ var questions = [{
   }
 ];
 
-console.log(questions);
-var questionTracker = [];
-var questionAmount = 1;
+console.log(questions.length);
 var answerValue;
-var time = 5;
+var time = 10;
 var intervalId;
 var currentObject = questions[0];
 var questionNumber = -1;
+var answeredValue = 0;
 var gameStarted = false;
 rightAnswers = 0;
 wrongAnswers = 0;
 
 
 window.onload = function() {
-    $("button").on("click", nextQuestion)
+    $("#start").on("click", nextQuestion);
     $("#timeRemaining").css("display","none");
     $("#question").css("display","none");
-    $("#ans1").css("display","none");
-    $("#ans2").css("display","none");
-    $("#ans3").css("display","none");
-    $("#ans4").css("display","none");
+    $("#ansButtons").css("display","none");
     };
 
 function resetPage(){
     $("#timeRemaining").css("display","none");
     $("#question").css("display","none");
-    $("#ans1").css("display","none");
-    $("#ans2").css("display","none");
-    $("#ans3").css("display","none");
-    $("#ans4").css("display","none");
-    $("#rightWrong").css("display","none");
-    $("#info").css("display","none");
+    $("#ansButtons").css("display","none");
 
-
-}
-
-function reset() {
-    time = 5;
 }
 
 function checkAns(a){
     console.log("thatwork?")
-    if (currentObject.ca === a) {
+    console.log("asval" + a)
+    if (currentObject.ca == a) {
         rightAnswers++;
         $("#rightWrong").html("<h3>That's absolutely right! You so smaaat!</h3>");
-      questionAnswered()
-    }
-    else{
+        questionAnswered()
+    }else{
+        console.log("elsework?")
         wrongAnswers++;
         $("#rightWrong").html("<h3>No! Bad! Wrong!</h3>");
         questionAnswered()
-        return false;
     }
-
   }
+
+function ansClicked(){
+    console.log(this);
+    if(this.id == "ans1"){
+        checkAns(1);
+    }
+    if(this.id == "ans2"){
+        checkAns(2);
+    }
+    if(this.id == "ans3"){
+        checkAns(3);
+    }
+    if(this.id == "ans4"){
+        checkAns(4);
+    }
+}
 
 function showQuestion(){
     $("#start").css("display","none");
+    $("#rightWrong").css("display","none");
+    $("#info").css("display","none");
     $("#timeRemaining").css("display","inline-block");
     $("#question").css("display","inline-block");
-    $("#ans1").css("display","inline-block").click({a: 1}, checkAns);
-    $("#ans2").css("display","inline-block").click({a: 2}, checkAns);
-    $("#ans3").css("display","inline-block").click({a: 3}, checkAns);
-    $("#ans4").css("display","inline-block").click({a: 4}, checkAns);
+    $("#ansButtons").css("display","inline-block")
+    $("#ans1").on("click", ansClicked);
+    $("#ans2").on("click", ansClicked);
+    $("#ans3").on("click", ansClicked);
+    $("#ans4").on("click", ansClicked);
 }
 
 
@@ -130,13 +134,14 @@ function nextQuestion() {
 
 function questionAnswered(){
     resetPage()
+    $("#rightWrong").css("display","inline-block");
+    $("#info").css("display","inline-block");
     $("#info").html("<h3>" + currentObject.ct + "</h3>");
     // setTimeout(nextQuestion(), 3 * 1000);
 }
 
 function countdown() {
     clearInterval(intervalId);
-    time = 5;
     intervalId = setInterval(decrement, 1000);
   }
 
@@ -150,20 +155,20 @@ function decrement() {
     $("#timeRemaining").html("<h4>" + time + " Seconds Remaining</h4>");
 
     if (time === 0) {
-
-        //  Next Question and Reset Timer
-            nextQuestion();
-            reset();
+            checkAns(5);
         }
   }
 
 function updateQuestion(){
+    if(questionNumber === questions.length - 1){
+        resetPage()
+    }
     questionNumber++;
+    currentObject = questions[questionNumber];
     // console.log("ques#: " + questions[questionNumber].q)
   $("#question").html("<h3>" + questions[questionNumber].q + "</h3>");
   var qAns = questions[questionNumber].a;
-  currentObject = questions[questionNumber];
-
+  
   for (var j = 0; j < qAns.length; j++) {
     var answer = qAns[j];
     if (j == 0) {
@@ -180,12 +185,6 @@ function updateQuestion(){
     }
   }
 }
-
-
-  // Add the question to the tracker
-
-console.log("questrac: " + questionTracker)
-// If the current random number already exists in the tracker, return true
 
 
 
