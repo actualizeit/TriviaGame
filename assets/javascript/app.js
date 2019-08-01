@@ -138,6 +138,7 @@ function showQuestion(){
 
 
 function nextQuestion() {
+    $("#timeRemaining").html("<h4>30 Seconds Remaining</h4>");
     clearTimeout(timeout);
     time=30;
     showQuestion();
