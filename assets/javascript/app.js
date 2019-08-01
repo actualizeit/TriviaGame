@@ -7,7 +7,8 @@ var questions = [{
       "Windy"
     ],
     "ca": 1,
-    "ct": "The weather is, in fact, Sunny"
+    "ct": "The weather is, in fact, Sunny",
+    "gif": "'https://media.giphy.com/media/f8sUe17QkXY9o8uoFk/giphy.gif'"
   },
   {
     "q": "What time of day is it?",
@@ -57,14 +58,15 @@ var questions = [{
 
 console.log(questions.length);
 var answerValue;
-var time = 10;
+var time = 35;
+var timeout;
 var intervalId;
 var currentObject = questions[0];
 var questionNumber = -1;
 var answeredValue = 0;
 var gameStarted = false;
-rightAnswers = 0;
-wrongAnswers = 0;
+var rightAnswers = 0;
+var wrongAnswers = 0;
 
 
 window.onload = function() {
@@ -84,6 +86,8 @@ function resetPage(){
 function checkAns(a){
     console.log("thatwork?")
     console.log("asval" + a)
+    checkAnsTimeout = setTimeout(function(){
+        nextQuestion()}, 5000)
     if (currentObject.ca == a) {
         rightAnswers++;
         $("#rightWrong").html("<h3>That's absolutely right! You so smaaat!</h3>");
@@ -114,8 +118,8 @@ function ansClicked(){
 
 function showQuestion(){
     $("#start").css("display","none");
-    $("#rightWrong").css("display","none");
-    $("#info").css("display","none");
+    $("#answerArea").css("display","none");
+    // $("#info").css("display","none");
     $("#timeRemaining").css("display","inline-block");
     $("#question").css("display","inline-block");
     $("#ansButtons").css("display","inline-block")
@@ -127,6 +131,7 @@ function showQuestion(){
 
 
 function nextQuestion() {
+    time=30;
     showQuestion();
     countdown();
     updateQuestion();
@@ -135,9 +140,9 @@ function nextQuestion() {
 function questionAnswered(){
     resetPage()
     $("#rightWrong").css("display","inline-block");
-    $("#info").css("display","inline-block");
+    $("#answerArea").css("display","inline-block");
+    $("#gif").html("<img src=" + currentObject.gif + ">");
     $("#info").html("<h3>" + currentObject.ct + "</h3>");
-    // setTimeout(nextQuestion(), 3 * 1000);
 }
 
 function countdown() {
