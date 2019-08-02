@@ -94,7 +94,7 @@ function resetPage(){
 function checkAns(a){
     console.log("question#: " + questionNumber)
     timeout = setTimeout(function(){
-        nextQuestion()}, 1000)
+        nextQuestion()}, 5000)
     if (currentObject.ca == a) {
         rightAnswers++;
         console.log("right: " + rightAnswers + "wrong: " + wrongAnswers)
