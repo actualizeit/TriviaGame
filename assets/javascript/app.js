@@ -41,7 +41,7 @@ var questions = [{
     "a": [
       "A former reality TV star with a year-round, fake-tan glow",
       "A chubby millennial who shot his uncle with an AA gun",
-      "A murderous ex KGB agent who likes riding a horses shirtless",
+      "A murderous ex KGB agent who likes riding horses shirtless",
       "All of the above!"
     ],
     "ca": 4,
@@ -127,7 +127,6 @@ function ansClicked(){
 function showQuestion(){
     $("#start").css("display","none");
     $("#answerArea").css("display","none");
-    // $("#info").css("display","none");
     $("#timeRemaining").css("display","inline-block");
     $("#question").css("display","inline-block");
     $("#ansButtons").css("display","inline-block")
@@ -145,7 +144,6 @@ function nextQuestion() {
 
 function questionAnswered(){
     resetPage()
-    // $("#rightWrong").css("display","inline-block");
     $("#answerArea").css("display","inline-block");
     $("#gif").html("<img src=" + currentObject.gif + ">");
     $("#info").html("<h3>" + currentObject.ct + "</h3>");
@@ -182,7 +180,6 @@ function updateQuestion(){
     }
     questionNumber++;
     currentObject = questions[questionNumber];
-    // console.log("ques#: " + questions[questionNumber].q)
   $("#question").html("<h3>" + questions[questionNumber].q + "</h3>");
   var qAns = questions[questionNumber].a;
   
