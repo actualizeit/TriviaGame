@@ -98,7 +98,7 @@ function checkAns(a){
     if (currentObject.ca == a) {
         rightAnswers++;
         console.log("right: " + rightAnswers + "wrong: " + wrongAnswers)
-        $("#rightWrong").html("<h3>That's absolutely right! You so smaaat!</h3>");
+        $("#rightWrong").html("<h3>That's absolutely right! But it won't save you.</h3>");
         questionAnswered()
     }else{
         console.log("wrong: " + wrongAnswers + "right: " + rightAnswers)
