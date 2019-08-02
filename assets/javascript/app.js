@@ -1,78 +1,75 @@
 var questions = [{
-    "q": "What is the weather like?",
+    "q": "Which of the following climate change events has actually happened?",
     "a": [
-      "Sunny",
-      "Raining",
-      "Cloudy",
-      "Windy"
+      "Powerful storms with unprecidented storm surges",
+      "Droughts and floods in areas typically not prone to them",
+      "Thawing permafrost creating a feedback loop due to released methane",
+      "All of the above!"
     ],
-    "ca": 1,
-    "ct": "The weather is, in fact, Sunny",
-    "gif": "'https://media.giphy.com/media/f8sUe17QkXY9o8uoFk/giphy.gif'"
+    "ca": 4,
+    "ct": "Yup, we’re pretty much hosed.",
+    "gif": "'https://media.giphy.com/media/2vqaiPr1TrevmxCPUV/giphy.gif'"
   },
   {
-    "q": "What time of day is it?",
+    "q": "How could an AI go awry and kill us all?",
     "a": [
-      "2",
-      "5",
-      "6",
-      "10"
+      "Military applications that go AWOL",
+      "Instrumental convergence (good AI optimizing in unexpected ways)",
+      "A fundamental loss of our humanity as we drift into artificially induced bliss",
+      "All of the above!"
     ],
-    "ca": 1,
-    "ct": "actually its 1",
-    "gif": "'https://media.giphy.com/media/f8sUe17QkXY9o8uoFk/giphy.gif'"
+    "ca": 4,
+    "ct": "Beep boop, nothing to see here, certainly not a human in need of extermination!",
+    "gif": "'https://media.giphy.com/media/IZY2SE2JmPgFG/giphy.gif'"
 
   },
   {
-    "q": "Whats your favourite music?",
+    "q": "What are some risk factors for a new pandemic?",
     "a": [
-      "pop",
-      "hip hop",
-      "stuff",
-      "classical"
+      "The ability to gene edit diseases to make them more virulent/deadly",
+      "Ever increasing interconnection of the global human and nonhuman populations",
+      "Massive antibiotic use to increase factory farming profitability and because people don’t understand how antibiotics work and they’re cheap",
+      "All of the above!"
     ],
-    "ca": 1,
-    "ct": "dubstep is bes",
-    "gif": "'https://media.giphy.com/media/f8sUe17QkXY9o8uoFk/giphy.gif'"
+    "ca": 4,
+    "ct": "Bring out ya dead!",
+    "gif": "'https://media.giphy.com/media/WbhyxMSzGTAe4/giphy.gif'"
 
   },
   {
-    "q": "Which season is your favourite?",
+    "q": "Who has nukes?",
     "a": [
-      "spring",
-      "summer",
-      "fall",
-      "winter"
+      "A former reality TV star with a year-round, fake-tan glow",
+      "A chubby millennial who shot his uncle with an AA gun",
+      "A murderous ex KGB agent who likes riding a horses shirtless",
+      "All of the above!"
     ],
-    "ca": 1,
-    "ct": "the other season",
-    "gif": "'https://media.giphy.com/media/f8sUe17QkXY9o8uoFk/giphy.gif'"
+    "ca": 4,
+    "ct": "This is really blowin’ up.",
+    "gif": "'https://media.giphy.com/media/3oKIPwoeGErMmaI43S/giphy.gif'"
 
   },
   {
-    "q": "What colour are your eyes?",
+    "q": "What are our options to deal with any of the issues we face?",
     "a": [
-      "Sunny",
-      "Raining",
-      "Cloudy",
-      "Windy"
+      "Petition our global government to intercede and address systemic existential risks",
+      "Work within the market structures to address the issues because people are willing to pay individually for improvements to the commons",
+      "Turn to our unifying religious structures to recognize that we are all one and must act as one to solve our problems",
+      "Cry"
     ],
-    "ca": 1,
-    "ct": "weather is the worst",
-    "gif": "'https://media.giphy.com/media/f8sUe17QkXY9o8uoFk/giphy.gif'"
+    "ca": 4,
+    "ct": "Sometimes you just need a good cry. No shame in that. No shame.",
+    "gif": "'https://media.giphy.com/media/1BXa2alBjrCXC/giphy.gif'"
 
   }
 ];
 
 console.log(questions.length);
-// var answerValue;
 var time = 35;
 var timeout;
 var intervalId;
 var currentObject = questions[0];
 var questionNumber = -1;
-// var answeredValue = 0;
-// var gameStarted = false;
 var rightAnswers = 0;
 var wrongAnswers = 0;
 
