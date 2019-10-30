@@ -6,6 +6,8 @@ In this game, we all lose!
 
 Questions will appear after you click start, pick the option you think is right, and find out how it all ends!
 
+Deployed link: https://actualizeit.github.io/TriviaGame/
+
 ### Prerequisites
 
 This game requires an internet connection and browser such as Chrome, Firefox or IE I guess if you're into that kinda thing.
